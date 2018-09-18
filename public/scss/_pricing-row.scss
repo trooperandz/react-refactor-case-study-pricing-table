@@ -1,0 +1,91 @@
+// Represents common row types across each pricing column
+
+.pricing-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  border-bottom: $border-gray-light;
+  padding: 20px;
+  width: auto;
+  color: $color-gray-dark;
+
+  div {
+    margin: 5px;
+  }
+
+  // Main feature category title in left column
+  .pricing-row__feature {
+    text-align: right;
+    font-weight: bold;
+  }
+
+  // Feature detail (like # subscribers, revenue limit, icon, basic or pro, etc.)
+  .pricing-row__feature-detail {
+
+  }
+
+  // Checkmark for included features & X for excluded features
+  .pricing-row__icon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 13px;
+
+    &.pricing-row__icon--x {
+      background-image: url('../images/x-icon.png');
+    }
+
+    &.pricing-row__icon--checkmark {
+      background-image: url('../images/check-mark-icon.png');
+    }
+  }
+
+  .pricing-row__subfeature-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pricing-row__subfeature {
+    margin: 1px;
+  }
+
+  // Note: these row modifiers match the provided featureSlug
+  &.pricing-row--ecommerce-integrations {
+    height: 100px;
+  }
+
+  // Subfeatures contained in this
+  &.pricing-row--message-center {
+    height: 140px;
+  }
+
+  // Subfeatures contained in this
+  &.pricing-row--forms {
+    height: 200px;
+  }
+
+  // Container for whole button row (can be 2 cols wide)
+  &.pricing-row--button {
+    height: 88px;
+    width: auto;
+    border-left: 1px solid rgba(119, 125, 131, 0.3);
+    border-top: 1px solid rgba(119, 125, 131, 0.3);
+  }
+
+  // Plan wrapper takes care of border
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+// Mobile row styles
+@media only screen and (max-width: 40em) {
+  .pricing-row {
+    &.pricing-row--button {
+      border-left: none;
+    }
+  }
+}

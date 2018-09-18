@@ -1,0 +1,24 @@
+// Buttons for pricing table; shown in main header and last plan row
+// Will just use sumo-fabulous button when finalized
+
+.pricing-button {
+  margin: 8px;
+  padding: 12px;
+  width: 200px;
+  height: 48px;
+  border-radius: $border-radius;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  @include box-shadow;
+
+  &.pricing-button--primary {
+    background-color: $color-blue-dark;
+    color: #fff;
+  }
+
+  &.pricing-button--secondary {
+    background-color: #ffffff;
+    color: $color-gray-dark;
+  }
+}

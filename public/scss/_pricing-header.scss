@@ -1,0 +1,64 @@
+// Main pricing plan headers; spans entire plan wrapper (2 cols on mobile)
+// TODO: Might want to get revamped images from design that are scaled equally, so can use consistent width...
+
+.pricing-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 495px;
+  border-bottom: $border-gray-light;
+  border-left: $border-gray-light;
+  padding: 20px;
+  width: auto;
+
+  .pricing-header__img-wrapper {
+    .pricing-header__img {
+      height: 200px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: bottom;
+
+      &.pricing-header__img--professional {
+        background-image: url('../images/pricing-tetris-professional.png');
+        width: 65px;
+      }
+
+      &.pricing-header__img--ecommerce {
+        background-image: url('../images/pricing-tetris-ecommerce.png');
+        width: 75px;
+      }
+
+      &.pricing-header__img--growth {
+        background-image: url('../images/pricing-tetris-growth.png');
+        width: 85px;
+      }
+    }
+  }
+
+  .pricing-header__title {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.78;
+  }
+
+  .pricing-header__price {
+    font-size: 54px;
+    font-weight: bold;
+    line-height: .89;
+
+    // Growth plan doesn't show price; text instead
+    &.pricing-header__price--contact {
+      font-size: 32px;
+      line-height: 1.5;
+    }
+  }
+}
+
+// Mobile plan header styles
+@media only screen and (max-width: 40em) {
+  .pricing-header {
+    border-left: none;
+  }
+}
