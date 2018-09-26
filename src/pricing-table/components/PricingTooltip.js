@@ -28,7 +28,7 @@ class PricingTooltip extends React.Component {
 
   render() {
     const { shouldTooltipShow } = this.state;
-    const { featureDescription } = this.props;
+    const { featureTitle, featureDescription } = this.props;
 
     // Ensure min size for background images, and that all titles are perfectly centered
     const titleStyles = {
@@ -46,11 +46,12 @@ class PricingTooltip extends React.Component {
       <React.Fragment>
         <div style={titleStyles} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>{this.props.children}</div>
         <div className={`pricing-tooltip ${activeClassName}`}>
-          {featureDescription}
+          <p className="pricing-tooltip__title">{featureTitle}</p>
+          <p className="pricing-tooltip__description">{featureDescription}</p>
         </div>
       </React.Fragment>
     );
   }
-};
+}
 
 export default PricingTooltip;

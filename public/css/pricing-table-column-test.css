@@ -192,6 +192,12 @@
   right: -10px;
   color: #495259;
   z-index: -1; }
+  .pricing-tooltip .pricing-tooltip__title {
+    font-weight: bold;
+    font-size: 14px; }
+  .pricing-tooltip .pricing-tooltip__description {
+    font-weigth: normal;
+    font-size: 12px; }
   .pricing-tooltip.pricing-tooltip--active {
     opacity: 1;
     transition: opacity 0.2s ease-in;

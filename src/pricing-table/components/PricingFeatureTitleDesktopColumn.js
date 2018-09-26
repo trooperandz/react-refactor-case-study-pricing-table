@@ -8,7 +8,6 @@ import pricingPlanActions from '../actions/pricingPlanActions';
  * Shown only on desktop.
  */
 const PricingFeatureTitleDesktopColumn = (props) => {
-  // Hacky; consolidate w/ existing fn etc.  Just for testing render of very first desktop feature column now...
   // This row has an empty container at the top and bottom (which is the header and footer for the plan columns)
   // Our plans are always going to have the same # of features since we are going w/ a table-type comparison structure,
   // so we just use the first plan data object to populate it
@@ -21,7 +20,9 @@ const PricingFeatureTitleDesktopColumn = (props) => {
         plan.unshift({ featureSlug: '', featureTitle: '' });
         plan.push({ featureSlug: '', featureTitle: '' });
 
-        const planData = plan.map(({ featureSlug, featureTitle, value }, i) => {
+        const planData = plan.map(({ featureSlug, value }, i) => {
+          const { featureTitle } = pricingPlanActions.getFeatureDetails(featureSlug);
+
           if (i === 0) { // empty header row
             return (
               <div className="pricing-header" key={'pricing-header'}>

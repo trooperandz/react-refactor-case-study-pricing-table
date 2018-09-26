@@ -13,19 +13,19 @@ class PricingFeatureValueRow extends React.Component {
 
     const currentPlan = pricingPlanActions.getPlanFeatures()[planType];
 
-    const featureValueRows = currentPlan.map(({ featureSlug, featureTitle, value }) => {
+    const featureValueRows = currentPlan.map(({ featureSlug, value }) => {
       let pricingRowContent;
 
-      // Get tooltip description
-      const { featureDescription } = pricingPlanActions.getFeatureDetails(featureSlug);
+      // Get table row content titles, and tooltip titles and descriptions
+      const { featureTitle, featureDescription } = pricingPlanActions.getFeatureDetails(featureSlug);
 
       if (Array.isArray(value)) {
-        const subfeatureItems = value.map(({ featureSlug, featureTitle }, i) => {
-          const { featureDescription } = pricingPlanActions.getFeatureDetails(featureSlug);
+        const subfeatureItems = value.map(({ featureSlug }, i) => {
+          const { featureTitle, featureDescription } = pricingPlanActions.getFeatureDetails(featureSlug);
 
           return (
             <div key={`${featureTitle}-${i}`} className="pricing-row__subfeature">
-              <PricingTooltip featureDescription={featureDescription}>{featureTitle}</PricingTooltip>
+              <PricingTooltip featureTitle={featureTitle} featureDescription={featureDescription}>{featureTitle}</PricingTooltip>
             </div>
           );
         });
@@ -40,19 +40,19 @@ class PricingFeatureValueRow extends React.Component {
 
         pricingRowContent = (
           <div className={`pricing-row__icon pricing-row__icon--${iconType}`}>
-            <PricingTooltip featureDescription={featureDescription}>&nbsp;</PricingTooltip>
+            <PricingTooltip featureTitle={featureTitle} featureDescription={featureDescription}>&nbsp;</PricingTooltip>
           </div>
         );
       } else if (value.toString().includes('Basic') || value.toString().includes('Pro')) {
         pricingRowContent = (
           <div className="pricing-row__feature-detail">
-            <PricingTooltip featureDescription={featureDescription}>{value}</PricingTooltip>
+            <PricingTooltip featureTitle={featureTitle} featureDescription={featureDescription}>{value}</PricingTooltip>
           </div>
         );
       } else {
         pricingRowContent = (
           <div ref={this.getFeatureEl} className="pricing-row__feature">
-            <PricingTooltip featureDescription={featureDescription}>{value}</PricingTooltip>
+            <PricingTooltip featureTitle={featureTitle} featureDescription={featureDescription}>{value}</PricingTooltip>
           </div>
         );
       }
@@ -65,7 +65,7 @@ class PricingFeatureValueRow extends React.Component {
     });
 
     return featureValueRows;
-  };
+  }
 
   render() {
     return (
@@ -74,6 +74,6 @@ class PricingFeatureValueRow extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default PricingFeatureValueRow;
