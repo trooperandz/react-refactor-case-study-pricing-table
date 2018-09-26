@@ -1,0 +1,34 @@
+// Yearly/monthly toggle at top of pricing table
+
+.pricing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 45px 0;
+
+  .pricing-toggle__duration {
+    position: relative;
+    margin: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.71;
+    color: $color-gray-dark;
+    text-transform: uppercase;
+
+    &.pricing-toggle__duration--active {
+      &:after {
+        content: "";
+        position: absolute;
+        height: 4px;
+        width: 100%;
+        left: 0;
+        bottom: -8px;
+        background-color: $color-blue-dark;
+      }
+    }
+  }
+
+  .pricing-toggle__savings {
+    font-style: italic;
+  }
+}

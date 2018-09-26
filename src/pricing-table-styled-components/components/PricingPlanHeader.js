@@ -6,37 +6,15 @@ import PricingPlanButton from './PricingPlanButton';
 const PricingPlanHeader = (props) => {
   const { planType, planDuration } = props;
   console.log('planDuration in PricingPlanHeader: ', planDuration);
+  // TODO: finalize price fetching sources...
   let planPrice;
-  let annualPaymentTotal; // '...paid annually'
-  let savingsPerYear = '';
 
-  // Hides the 'savings per year' element if monthly duration is active
-  const HIDDEN_DESCRIPTION_CLASS = 'pricing-header__price-description--hidden';
-  let hiddenDescriptionActiveClass = '';
-
-  // TODO: finalize price fetching sources and actual calculations...
   switch(planType) {
     case 'professional':
-      if (planDuration === 'monthly') {
-        planPrice = 29;
-        annualPaymentTotal = 348;
-        hiddenDescriptionActiveClass = HIDDEN_DESCRIPTION_CLASS;
-      } else {
-        planPrice = 23;
-        annualPaymentTotal = 276;
-        savingsPerYear = 72;
-      }
+      planPrice = (planDuration === 'monthly' ? 53 : 63);
       break;
     case 'ecommerce':
-      if (planDuration === 'monthly') {
-        planPrice = 79;
-        annualPaymentTotal = 948;
-        hiddenDescriptionActiveClass = HIDDEN_DESCRIPTION_CLASS;
-      } else {
-        planPrice = 63;
-        annualPaymentTotal = 756;
-        savingsPerYear = 192;
-      }
+      planPrice = (planDuration === 'monthly' ? 63 : 73);
       break;
     case 'growth':
       planPrice = 'Contact Us';
@@ -45,12 +23,11 @@ const PricingPlanHeader = (props) => {
       planPrice = '';
   }
 
-  // Most plan headers have identical structure; the growth plan is a bit different...
   const getPriceMarkup = () => {
     let priceMarkup;
 
     if (planType === 'growth') {
-      priceMarkup = (
+       priceMarkup = (
         <React.Fragment>
           <div className="pricing-header__price pricing-header__price--contact">{planPrice}</div>
           <div className="pricing-header__price-description">To Learn More</div>
@@ -60,13 +37,15 @@ const PricingPlanHeader = (props) => {
     } else {
       priceMarkup = (
         <React.Fragment>
+          <div>
           <div className="pricing-header__price">
             <span className="pricing-header__price-dollar">$</span>
             <span className="pricing-header__price-number">{planPrice}</span>
             <span className="pricing-header__price-sub">/mo</span>
           </div>
-          <div className="pricing-header__price-description">${annualPaymentTotal} paid annually</div>
-          <div className={`pricing-header__price-description ${hiddenDescriptionActiveClass}`}>You save ${savingsPerYear} per year</div>
+          <div className="pricing-header__price-description">$76 paid annually</div>
+          <div className="pricing-header__price-description">You save $192 per year</div>
+          </div>
         </React.Fragment>
       );
     }

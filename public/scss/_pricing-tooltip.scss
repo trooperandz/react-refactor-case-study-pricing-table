@@ -1,0 +1,22 @@
+.pricing-tooltip {
+  position: absolute;
+  padding: 16px;
+  border: solid 1px darkgray;
+  border-radius: 8px;
+  z-index: 1000;
+  background-color: white;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  width: 200px;
+  // testing: this may be dynamic
+  top: 16px;
+  right: -10px;
+  color: $color-gray-dark;
+  z-index: -1; // don't prevent hover action on other values if hidden tooltip covers them up
+
+  &.pricing-tooltip--active {
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+    z-index: 1; // restore tooltip layer
+  }
+}

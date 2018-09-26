@@ -12,59 +12,32 @@
  */
 
 import React from 'react';
+import styled from 'styled-components';
 
 import PricingFeatureTitleDesktopColumn from '../components/PricingFeatureTitleDesktopColumn';
-import PricingPlanToggle from '../components/PricingPlanToggle';
 import PricingPlanContainer from './PricingPlanContainer';
 
 import pricingPlanActions from '../actions/pricingPlanActions';
 
+const StyleTest = styled.div`
+  background-color: gray;
+  height: 200px;
+  width: 200px;
+`;
+
 // Main pricing container, highest level component wrapper
 class PricingTableContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      planDuration: 'monthly',
-    };
-
-    this.onTogglePlanDuration = this.onTogglePlanDuration.bind(this);
-  }
-
-  // Toggle monthly/yearly plan duration
-  onTogglePlanDuration() {
-    const { planDuration } = this.state;
-
-    this.setState({
-      planDuration: (planDuration === 'monthly' ? 'yearly' : 'monthly'),
-    });
-  }
-
   // Build each individual pricing plan column container, contains header, features, and footer
   renderPricingPlanColumns() {
-    const { planDuration } = this.state;
-
     const planArr = Object.keys(pricingPlanActions.getPlanFeatures());
 
-    const pricingPlans = planArr.map((planType) => {
-      return (
-        <PricingPlanContainer
-          key={planType}
-          planType={planType}
-          planDuration={planDuration}
-        />
-      );
-    });
-
-    return pricingPlans;
+    return planArr.map(planType => <PricingPlanContainer planType={planType} />);
   }
 
   render() {
-    const { planDuration } = this.state;
-
     return (
       <React.Fragment>
-        <PricingPlanToggle onToggle={this.onTogglePlanDuration} planDuration={planDuration} />
+        <StyleTest />
         <div className="pricing-table-wrapper">
           {/* Our first features column is unique with extra spaces; consolidate into other fn's eventually... */}
           <PricingFeatureTitleDesktopColumn />

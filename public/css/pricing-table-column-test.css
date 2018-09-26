@@ -1,40 +1,88 @@
+.pricing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 45px 0; }
+  .pricing-toggle .pricing-toggle__duration {
+    position: relative;
+    margin: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.71;
+    color: #495259;
+    text-transform: uppercase; }
+    .pricing-toggle .pricing-toggle__duration.pricing-toggle__duration--active:after {
+      content: "";
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      left: 0;
+      bottom: -8px;
+      background-color: #2A70E0; }
+  .pricing-toggle .pricing-toggle__savings {
+    font-style: italic; }
+
 .pricing-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 495px;
+  height: 380px;
   border-bottom: 1px solid rgba(119, 125, 131, 0.3);
   border-left: 1px solid rgba(119, 125, 131, 0.3);
   padding: 20px;
   width: auto; }
   .pricing-header .pricing-header__img-wrapper .pricing-header__img {
-    height: 200px;
+    height: 120px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom; }
     .pricing-header .pricing-header__img-wrapper .pricing-header__img.pricing-header__img--professional {
       background-image: url("../images/pricing-tetris-professional.png");
-      width: 65px; }
+      width: 45px; }
     .pricing-header .pricing-header__img-wrapper .pricing-header__img.pricing-header__img--ecommerce {
       background-image: url("../images/pricing-tetris-ecommerce.png");
-      width: 75px; }
+      width: 45px; }
     .pricing-header .pricing-header__img-wrapper .pricing-header__img.pricing-header__img--growth {
       background-image: url("../images/pricing-tetris-growth.png");
-      width: 85px; }
+      width: 55px; }
   .pricing-header .pricing-header__title {
     text-transform: uppercase;
     font-size: 18px;
     font-weight: bold;
     line-height: 1.78; }
-  .pricing-header .pricing-header__price {
-    font-size: 54px;
-    font-weight: bold;
-    line-height: .89; }
-    .pricing-header .pricing-header__price.pricing-header__price--contact {
-      font-size: 32px;
-      line-height: 1.5; }
+  .pricing-header .pricing-header__price-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .pricing-header .pricing-header__price-wrapper .pricing-header__price {
+      display: flex;
+      line-height: .7;
+      margin: 16px;
+      font-weight: bold; }
+      .pricing-header .pricing-header__price-wrapper .pricing-header__price .pricing-header__price-dollar {
+        align-self: flex-start;
+        font-size: 18px; }
+      .pricing-header .pricing-header__price-wrapper .pricing-header__price .pricing-header__price-number {
+        font-size: 54px; }
+      .pricing-header .pricing-header__price-wrapper .pricing-header__price .pricing-header__price-sub {
+        align-self: flex-end;
+        font-size: 18px; }
+      .pricing-header .pricing-header__price-wrapper .pricing-header__price.pricing-header__price--contact {
+        font-size: 32px;
+        line-height: 1.5; }
+    .pricing-header .pricing-header__price-wrapper .pricing-header__price-description {
+      line-height: 1.7; }
+      .pricing-header .pricing-header__price-wrapper .pricing-header__price-description.pricing-header__price-description--hidden {
+        visibility: hidden; }
 
+@media only screen and (max-width: 48em) {
+  .pricing-header {
+    padding: 8px; }
+    .pricing-header .pricing-header__price-wrapper .pricing-header__price .pricing-header__price-number {
+      font-size: 45px; }
+    .pricing-header .pricing-header__price-wrapper .pricing-header__price.pricing-header__price--contact {
+      font-size: 25px; } }
 @media only screen and (max-width: 40em) {
   .pricing-header {
     border-left: none; } }
@@ -45,18 +93,23 @@
   justify-content: center;
   height: 50px;
   border-bottom: 1px solid rgba(119, 125, 131, 0.3);
-  padding: 20px;
+  padding: 5px;
   width: auto;
   color: #495259; }
   .pricing-row div {
     margin: 5px; }
   .pricing-row .pricing-row__feature {
+    position: relative;
     text-align: right;
     font-weight: bold; }
+  .pricing-row .pricing-row__feature-detail {
+    position: relative; }
   .pricing-row .pricing-row__icon {
+    position: relative;
     background-size: contain;
     background-repeat: no-repeat;
-    padding: 13px; }
+    max-width: 24px;
+    max-height: 24px; }
     .pricing-row .pricing-row__icon.pricing-row__icon--x {
       background-image: url("../images/x-icon.png"); }
     .pricing-row .pricing-row__icon.pricing-row__icon--checkmark {
@@ -67,9 +120,15 @@
     align-items: center;
     justify-content: center; }
   .pricing-row .pricing-row__subfeature {
-    margin: 1px; }
+    position: relative;
+    margin: 1px;
+    font-size: 1rem; }
   .pricing-row.pricing-row--ecommerce-integrations {
     height: 100px; }
+  .pricing-row.pricing-row--shortcuts {
+    height: 150px; }
+  .pricing-row.pricing-row--discount-codes {
+    height: 80px; }
   .pricing-row.pricing-row--message-center {
     height: 140px; }
   .pricing-row.pricing-row--forms {
@@ -82,14 +141,26 @@
   .pricing-row:last-child {
     border-bottom: none; }
 
+@media only screen and (max-width: 48em) {
+  .pricing-row {
+    padding: 8px; }
+
+  .pricing-feature-col-wrapper.pricing-feature-col-wrapper--categories .pricing-row {
+    font-size: 14px; } }
 @media only screen and (max-width: 40em) {
+  .pricing-row .pricing-row__subfeature {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
   .pricing-row.pricing-row--button {
-    border-left: none; } }
+    border-left: none; }
+
+  .pricing-feature-col-wrapper.pricing-feature-col-wrapper--categories .pricing-row {
+    font-size: 1rem; } }
 .pricing-button {
   margin: 8px;
   padding: 12px;
   width: 200px;
-  height: 48px;
   border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
@@ -102,8 +173,29 @@
     background-color: #ffffff;
     color: #495259; }
 
-html, body {
-  font-family: 'Open Sans', sans-serif; }
+@media only screen and (max-width: 48em) {
+  .pricing-button {
+    padding: 10px;
+    width: 160px;
+    font-size: 14px; } }
+.pricing-tooltip {
+  position: absolute;
+  padding: 16px;
+  border: solid 1px darkgray;
+  border-radius: 8px;
+  z-index: 1000;
+  background-color: white;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  width: 200px;
+  top: 16px;
+  right: -10px;
+  color: #495259;
+  z-index: -1; }
+  .pricing-tooltip.pricing-tooltip--active {
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+    z-index: 1; }
 
 .pricing-table-wrapper {
   display: flex;
@@ -138,15 +230,16 @@ html, body {
 .pricing-feature-col-wrapper {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  max-width: 330px; }
-  .pricing-feature-col-wrapper.pricing-feature-col-wrapper--categories .pricing-header {
-    border-left: none; }
-  .pricing-feature-col-wrapper.pricing-feature-col-wrapper--categories .pricing-row {
-    align-items: flex-end;
-    border-left: none; }
-    .pricing-feature-col-wrapper.pricing-feature-col-wrapper--categories .pricing-row.pricing-row--ecomm {
-      text-align: right; }
+  flex: 1; }
+  .pricing-feature-col-wrapper.pricing-feature-col-wrapper--categories {
+    width: 200px; }
+    .pricing-feature-col-wrapper.pricing-feature-col-wrapper--categories .pricing-header {
+      border-left: none; }
+    .pricing-feature-col-wrapper.pricing-feature-col-wrapper--categories .pricing-row {
+      align-items: flex-end;
+      border-left: none; }
+      .pricing-feature-col-wrapper.pricing-feature-col-wrapper--categories .pricing-row.pricing-row--ecomm {
+        text-align: right; }
   .pricing-feature-col-wrapper:last-child {
     border-left: 1px solid rgba(119, 125, 131, 0.3); }
   .pricing-feature-col-wrapper.pricing-feature-col-wrapper--mobile-only {
@@ -171,5 +264,13 @@ footer.footer.background-blue-wave {
     display: none; }
   .pricing-feature-col-wrapper.pricing-feature-col-wrapper--mobile-only {
     display: flex; } }
+@media only screen and (max-width: 48em) {
+  .pricing-feature-col-wrapper.pricing-feature-col-wrapper--categories {
+    width: 130px; } }
+@media only screen and (min-width: 78em) {
+  .pricing-plan-wrapper {
+    width: 300px; }
+    .pricing-plan-wrapper.pricing-plan-wrapper--ecommerce {
+      width: 400px; } }
 
 /*# sourceMappingURL=pricing-table-column-test.css.map */

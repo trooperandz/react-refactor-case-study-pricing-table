@@ -1,0 +1,13 @@
+// Sumo.com pricing page-specific styles
+
+// Main page title header
+.pricing-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .pricing-header-main {
+    font-size: 32px;
+    line-height: 1.5;
+  }
+}

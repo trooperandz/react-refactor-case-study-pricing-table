@@ -12,6 +12,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "watch:css" "sass --watch public/scss:public/css"
+    "watch:css": "sass --watch public/scss:public/css"
+  },
+  "devDependencies": {
+    "styled-components": "^3.4.9"
   }
 }

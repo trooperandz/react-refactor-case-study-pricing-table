@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 495px;
+  height: 380px;
   border-bottom: $border-gray-light;
   border-left: $border-gray-light;
   padding: 20px;
@@ -14,24 +14,24 @@
 
   .pricing-header__img-wrapper {
     .pricing-header__img {
-      height: 200px;
+      height: 120px;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: bottom;
 
       &.pricing-header__img--professional {
         background-image: url('../images/pricing-tetris-professional.png');
-        width: 65px;
+        width: 45px;
       }
 
       &.pricing-header__img--ecommerce {
         background-image: url('../images/pricing-tetris-ecommerce.png');
-        width: 75px;
+        width: 45px;
       }
 
       &.pricing-header__img--growth {
         background-image: url('../images/pricing-tetris-growth.png');
-        width: 85px;
+        width: 55px;
       }
     }
   }
@@ -43,15 +43,68 @@
     line-height: 1.78;
   }
 
-  .pricing-header__price {
-    font-size: 54px;
-    font-weight: bold;
-    line-height: .89;
+  // Wraps the price-specific information; keep these together for alignment & spacing
+  .pricing-header__price-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    // Growth plan doesn't show price; text instead
-    &.pricing-header__price--contact {
-      font-size: 32px;
-      line-height: 1.5;
+    .pricing-header__price {
+      display: flex;
+      line-height: .7;
+      margin: 16px;
+      font-weight: bold;
+
+      // Below items cover specific alignment with superscript & subscript
+      .pricing-header__price-dollar {
+        align-self: flex-start;
+        font-size: 18px;
+      }
+
+      .pricing-header__price-number {
+        font-size: 54px;
+      }
+
+      .pricing-header__price-sub {
+        align-self: flex-end;
+        font-size: 18px;
+      }
+
+      // Growth plan doesn't show price; text instead
+      &.pricing-header__price--contact {
+        font-size: 32px;
+        line-height: 1.5;
+      }
+    }
+
+    // Savings info under main price
+    .pricing-header__price-description {
+      line-height: 1.7;
+
+      &.pricing-header__price-description--hidden {
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+// TODO: rewrite media queries to flow mobile-first, not desktop first...
+// Ipad small screen styles (768px)
+@media only screen and (max-width: 48em) {
+  .pricing-header {
+    padding: 8px;
+
+    // Reduce price size for smaller width; might want to use rems...
+    .pricing-header__price-wrapper {
+      .pricing-header__price {
+        .pricing-header__price-number {
+          font-size: 45px;
+        }
+
+        &.pricing-header__price--contact {
+          font-size: 25px;
+        }
+      }
     }
   }
 }

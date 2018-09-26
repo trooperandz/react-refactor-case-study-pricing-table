@@ -7,30 +7,35 @@
   justify-content: center;
   height: 50px;
   border-bottom: $border-gray-light;
-  padding: 20px;
+  padding: 5px; // different from sumo one, can't get the same height
   width: auto;
   color: $color-gray-dark;
 
+  // TODO: don't use element name if possible
   div {
     margin: 5px;
   }
 
   // Main feature category title in left column
   .pricing-row__feature {
+    position: relative;
     text-align: right;
     font-weight: bold;
   }
 
   // Feature detail (like # subscribers, revenue limit, icon, basic or pro, etc.)
   .pricing-row__feature-detail {
-
+    position: relative;
   }
 
   // Checkmark for included features & X for excluded features
   .pricing-row__icon {
+    position: relative;
     background-size: contain;
     background-repeat: no-repeat;
-    padding: 13px;
+    max-width: 24px;
+    max-height: 24px;
+    // padding: 13px;
 
     &.pricing-row__icon--x {
       background-image: url('../images/x-icon.png');
@@ -49,12 +54,22 @@
   }
 
   .pricing-row__subfeature {
+    position: relative;
     margin: 1px;
+    font-size: 1rem; // Need these to adjust automatically to screen size
   }
 
   // Note: these row modifiers match the provided featureSlug
   &.pricing-row--ecommerce-integrations {
     height: 100px;
+  }
+
+  &.pricing-row--shortcuts {
+    height: 150px;
+  }
+
+  &.pricing-row--discount-codes {
+    height: 80px;
   }
 
   // Subfeatures contained in this
@@ -81,11 +96,43 @@
   }
 }
 
+// Ipad small screen styles (768px)
+@media only screen and (max-width: 48em) {
+  .pricing-row {
+    padding: 8px;
+  }
+
+  // Shrink left-most feature category title column
+  .pricing-feature-col-wrapper {
+    &.pricing-feature-col-wrapper--categories {
+      .pricing-row {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
 // Mobile row styles
 @media only screen and (max-width: 40em) {
   .pricing-row {
+    // Ensure subfeature list items don't break their lines...
+    .pricing-row__subfeature {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     &.pricing-row--button {
       border-left: none;
+    }
+  }
+
+    // Shrink left-most feature category title column
+  .pricing-feature-col-wrapper {
+    &.pricing-feature-col-wrapper--categories {
+      .pricing-row {
+        font-size: 1rem;
+      }
     }
   }
 }

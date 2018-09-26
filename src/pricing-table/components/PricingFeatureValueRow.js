@@ -1,19 +1,33 @@
 import React from 'react';
 
+import PricingTooltip from './PricingTooltip';
 import pricingPlanActions from '../actions/pricingPlanActions';
 
-const PricingFeatureValueRow = (props) => {
-  const getFormattedFeatureValueRow = () => {
-    const { planType } = props;
+class PricingFeatureValueRow extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  getFormattedFeatureValueRow() {
+    const { planType } = this.props;
 
     const currentPlan = pricingPlanActions.getPlanFeatures()[planType];
 
     const featureValueRows = currentPlan.map(({ featureSlug, featureTitle, value }) => {
       let pricingRowContent;
 
+      // Get tooltip description
+      const { featureDescription } = pricingPlanActions.getFeatureDetails(featureSlug);
+
       if (Array.isArray(value)) {
-        const subfeatureItems = value.map((subfeature) => {
-          return <p className="pricing-row__subfeature">{subfeature}</p>;
+        const subfeatureItems = value.map(({ featureSlug, featureTitle }, i) => {
+          const { featureDescription } = pricingPlanActions.getFeatureDetails(featureSlug);
+
+          return (
+            <div key={`${featureTitle}-${i}`} className="pricing-row__subfeature">
+              <PricingTooltip featureDescription={featureDescription}>{featureTitle}</PricingTooltip>
+            </div>
+          );
         });
 
         pricingRowContent = (
@@ -25,12 +39,22 @@ const PricingFeatureValueRow = (props) => {
         const iconType = value.split('-')[1];
 
         pricingRowContent = (
-          <div className={`pricing-row__icon pricing-row__icon--${iconType}`}></div>
+          <div className={`pricing-row__icon pricing-row__icon--${iconType}`}>
+            <PricingTooltip featureDescription={featureDescription}>&nbsp;</PricingTooltip>
+          </div>
         );
       } else if (value.toString().includes('Basic') || value.toString().includes('Pro')) {
-        pricingRowContent = <div className="pricing-row__feature-detail">{value}</div>; // TODO: give this a class etc
+        pricingRowContent = (
+          <div className="pricing-row__feature-detail">
+            <PricingTooltip featureDescription={featureDescription}>{value}</PricingTooltip>
+          </div>
+        );
       } else {
-        pricingRowContent = <div className="pricing-row__feature">{value}</div>;
+        pricingRowContent = (
+          <div ref={this.getFeatureEl} className="pricing-row__feature">
+            <PricingTooltip featureDescription={featureDescription}>{value}</PricingTooltip>
+          </div>
+        );
       }
 
       return (
@@ -43,11 +67,13 @@ const PricingFeatureValueRow = (props) => {
     return featureValueRows;
   };
 
-  return (
-    <div className="pricing-feature-col-wrapper">
-      {getFormattedFeatureValueRow()}
-    </div>
-  );
+  render() {
+    return (
+      <div className="pricing-feature-col-wrapper">
+        {this.getFormattedFeatureValueRow()}
+      </div>
+    );
+  }
 };
 
 export default PricingFeatureValueRow;

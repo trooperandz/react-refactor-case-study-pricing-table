@@ -1,14 +1,11 @@
 // Styles for pricing table
 
 @import 'pricing-utils';
+@import 'pricing-toggle';
 @import 'pricing-header';
 @import 'pricing-row';
 @import 'pricing-button';
-
-// Just for this react test
-html, body {
-  font-family: 'Open Sans', sans-serif;
-}
+@import 'pricing-tooltip';
 
 // Wraps ALL pricing content
 .pricing-table-wrapper {
@@ -59,10 +56,11 @@ html, body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  max-width: 330px;
 
   // Very first column, displaying feature category titles
   &.pricing-feature-col-wrapper--categories {
+    width: 200px;
+
     .pricing-header {
       border-left: none;
     }
@@ -123,6 +121,28 @@ footer.footer.background-blue-wave {
     // Show the hidden category columns on mobile
     &.pricing-feature-col-wrapper--mobile-only {
       display: flex;
+    }
+  }
+}
+
+// Ipad small screen styles (768px)
+@media only screen and (max-width: 48em) {
+  // Shrink left-most feature category title column
+  .pricing-feature-col-wrapper {
+    &.pricing-feature-col-wrapper--categories {
+      width: 130px;
+    }
+  }
+}
+
+// Large screens; ensure correct plan-wrapper widths per design specs when we reach the big pixs...
+// (ecomm wider than other plans, categories column wrapper smaller than all others)
+@media only screen and (min-width: 78em) {
+  .pricing-plan-wrapper {
+    width: 300px;
+
+    &.pricing-plan-wrapper--ecommerce {
+      width: 400px;
     }
   }
 }
