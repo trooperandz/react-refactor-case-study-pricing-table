@@ -3,6 +3,10 @@ import React from 'react';
 import PricingTooltip from './PricingTooltip';
 import pricingPlanActions from '../actions/pricingPlanActions';
 
+/**
+ * Render non-title pricing row content.
+ * Includes # seats, icons, basic/pro descriptions, subfeature lists, etc.
+ */
 class PricingFeatureValueRow extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +21,7 @@ class PricingFeatureValueRow extends React.Component {
       let pricingRowContent;
 
       // Get table row content titles, and tooltip titles and descriptions
-      const { featureTitle, featureDescription } = pricingPlanActions.getFeatureDetails(featureSlug);
+      const { featureTitle, featureDescription } = pricingPlanActions.getFeatureDetails(featureSlug, value);
 
       if (Array.isArray(value)) {
         const subfeatureItems = value.map(({ featureSlug }, i) => {
@@ -51,7 +55,7 @@ class PricingFeatureValueRow extends React.Component {
         );
       } else {
         pricingRowContent = (
-          <div ref={this.getFeatureEl} className="pricing-row__feature">
+          <div ref={this.getFeatureEl} className="pricing-row__feature-detail">
             <PricingTooltip featureTitle={featureTitle} featureDescription={featureDescription}>{value}</PricingTooltip>
           </div>
         );

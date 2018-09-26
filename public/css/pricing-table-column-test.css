@@ -103,7 +103,8 @@
     text-align: right;
     font-weight: bold; }
   .pricing-row .pricing-row__feature-detail {
-    position: relative; }
+    position: relative;
+    font-weight: normal; }
   .pricing-row .pricing-row__icon {
     position: relative;
     background-size: contain;

@@ -160,10 +160,20 @@ function getFeatureDetails(featureSlug, value = '') {
   let featureTitle;
   let featureDescription;
 
+  // Convert any included description text to lowercase; don't let integers throw errors
+  value = value.toString().toLowerCase();
+
   switch(featureSlug) {
     case 'revenue':
       featureTitle = 'Revenue';
-      featureDescription = `Use Sumo to help you generate ${value} revenue.`;
+
+      if (value === 'n/a') {
+        featureDescription = `Do you have an ecommerce business? Our Ecommerce and Growth plans can help you generate more revenue.`;
+      } else if (value === 'unlimited') {
+        featureDescription = `Use Sumo to help you generate ${value} revenue.`;
+      } else {
+        featureDescription = `Use Sumo to help you generate ${value} in annual revenue.`;
+      }
       break;
     case 'subscribers':
       featureTitle = 'Subscribers';
@@ -171,7 +181,18 @@ function getFeatureDetails(featureSlug, value = '') {
       break;
     case 'sites':
       featureTitle = 'Sites';
-      featureDescription = `Use your pro features ${value}.`;
+      let sitesDescription = '';
+
+      // Don't use type-checking on numbers since may have been converted to strings
+      if (value == 1) {
+        sitesDescription = 'on a single site';
+      } else if (value == 3) {
+        sitesDescription = 'across three sites';
+      } else {
+        sitesDescription = 'across all of your sites';
+      }
+
+      featureDescription = `Use your pro features ${sitesDescription}.`;
       break;
     case 'seats':
       let seatsDescription;
@@ -179,9 +200,9 @@ function getFeatureDetails(featureSlug, value = '') {
 
       if (value == 1) {
         featureDescription = 'Use a single seat to manage Sumo.';
-      } else if (value === 5)  {
-        featureDescription = 'Have up to five seats managing Sumo.';
-      } else if (value === 10) {
+      } else if (value == 2)  {
+        featureDescription = 'Have up to two seats managing Sumo.';
+      } else if (value == 10) {
         featureDescription = 'Have up to ten seats managing Sumo.';
       } else {
         featureDescription = 'Add as many seats as you need to manage Sumo.';
@@ -190,7 +211,7 @@ function getFeatureDetails(featureSlug, value = '') {
       break;
     case 'ecommerce-integrations':
       featureTitle = 'Shopify & Woocommerce Integrations';
-      featureDescription = `Automatically export new subscribers to ${value}`;
+      featureDescription = `Drive more sales by using discount codes and purchasing data directly integrated with your Shopify or Woocommerce store.`;
       break;
     case 'shortcuts':
       featureTitle = 'Shortcuts';
@@ -287,14 +308,14 @@ function getFeatureDetails(featureSlug, value = '') {
     // TODO: need description
     case 'customer-success-management':
       featureTitle = 'Customer Success Management';
-      featureDescription = '';
+      featureDescription = 'Our Customer Success team can create personalized strategies to help grow your business.';
       break;
     case 'sumo-support-basic':
-      featureTitle = 'Basic';
+      featureTitle = 'Sumo Support';
       featureDescription = 'Receive in-app and email support from our dedicated Support team.';
       break;
     case 'sumo-support-pro':
-      featureTitle = 'Pro';
+      featureTitle = 'Sumo Support';
       featureDescription = 'Receive priority in-app and email support from our dedicated Support and Success teams.';
       break;
     case 'remove-sumo-branding':
@@ -302,19 +323,19 @@ function getFeatureDetails(featureSlug, value = '') {
       featureDescription = 'Remove the Sumo branding from your forms and emails.';
       break;
     case 'email-integrations-basic':
-      featureTitle = 'Basic';
+      featureTitle = 'Email Integrations';
       featureDescription = 'Automatically export new subscribers to standard email providers like Mailchimp, Aweber, Constant Contact, Campaign Monitor, Emma, Mad Mimi, Feedblitz, Zapier, MNB, and more.';
       break;
     case 'email-integrations-pro':
-      featureTitle = 'Pro';
+      featureTitle = 'Email Integrations';
       featureDescription = 'Automatically export new subscribers to all standard email providers plus premium email providers like InfusionSoft, Klaviyo, Hubspot, Sailthru, Pardot, Ontraport, Salesforce, and more.';
       break;
     case 'analytics-basic':
-      featureTitle = 'Basic';
+      featureTitle = 'Analytics';
       featureDescription = 'Learn how your forms and website have performed in the last 7 days. Get simple, actionable insights to take the next step.';
       break;
     case 'analytics-pro':
-      featureTitle = 'Pro';
+      featureTitle = 'Analytics';
       featureDescription = 'Learn how your forms and website have performed using historical data, trends, and industry standards. Get simple, actionable insights to take the next step.';
       break;
     case 'ab-testing':

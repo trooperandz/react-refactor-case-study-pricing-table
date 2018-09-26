@@ -13,14 +13,12 @@ class PricingTooltip extends React.Component {
   }
 
   handleMouseEnter(e) {
-    console.log('onMouseEnter fired...');
     this.setState({
       shouldTooltipShow: true,
     });
   }
 
   handleMouseLeave(e) {
-    console.log('onMouseLeave fired...');
     this.setState({
       shouldTooltipShow: false,
     });
