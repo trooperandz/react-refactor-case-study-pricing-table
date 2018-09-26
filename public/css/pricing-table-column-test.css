@@ -10,7 +10,8 @@
     font-weight: bold;
     line-height: 1.71;
     color: #495259;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    cursor: pointer; }
     .pricing-toggle .pricing-toggle__duration.pricing-toggle__duration--active:after {
       content: "";
       position: absolute;
@@ -151,7 +152,6 @@
 @media only screen and (max-width: 40em) {
   .pricing-row .pricing-row__subfeature {
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis; }
   .pricing-row.pricing-row--button {
     border-left: none; }
@@ -182,7 +182,6 @@
 .pricing-tooltip {
   position: absolute;
   padding: 16px;
-  border: solid 1px darkgray;
   border-radius: 8px;
   z-index: 1000;
   background-color: white;
@@ -192,7 +191,9 @@
   top: 16px;
   right: -10px;
   color: #495259;
-  z-index: -1; }
+  z-index: -1;
+  white-space: normal;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08); }
   .pricing-tooltip .pricing-tooltip__title {
     font-weight: bold;
     font-size: 14px; }

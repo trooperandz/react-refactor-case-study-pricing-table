@@ -10,7 +10,7 @@ const PricingFeatureTitleRow = (props) => {
 
     const currentPlan = pricingPlanActions.getPlanFeatures()[planType];
 
-    const features = currentPlan.map(({ featureSlug, value }) => {
+    const features = currentPlan.map(({ featureSlug }) => {
       const { featureTitle } = pricingPlanActions.getFeatureDetails(featureSlug);
 
       return (

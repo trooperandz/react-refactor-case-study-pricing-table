@@ -1,18 +1,18 @@
 .pricing-tooltip {
   position: absolute;
   padding: 16px;
-  border: solid 1px darkgray;
   border-radius: 8px;
   z-index: 1000;
   background-color: white;
   opacity: 0;
   transition: opacity 0.2s ease-out;
   width: 200px;
-  // testing: this may be dynamic
   top: 16px;
   right: -10px;
   color: $color-gray-dark;
   z-index: -1; // don't prevent hover action on other values if hidden tooltip covers them up
+  white-space: normal; // override previous feature row nowrap
+  @include box-shadow;
 
   .pricing-tooltip__title {
     font-weight: bold;

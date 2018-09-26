@@ -14,6 +14,7 @@
     line-height: 1.71;
     color: $color-gray-dark;
     text-transform: uppercase;
+    cursor: pointer;
 
     &.pricing-toggle__duration--active {
       &:after {

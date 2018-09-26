@@ -118,7 +118,6 @@
     // Ensure subfeature list items don't break their lines...
     .pricing-row__subfeature {
       white-space: nowrap;
-      overflow: hidden;
       text-overflow: ellipsis;
     }
 

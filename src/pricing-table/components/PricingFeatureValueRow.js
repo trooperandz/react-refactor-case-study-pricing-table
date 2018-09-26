@@ -7,14 +7,10 @@ import pricingPlanActions from '../actions/pricingPlanActions';
  * Render non-title pricing row content.
  * Includes # seats, icons, basic/pro descriptions, subfeature lists, etc.
  */
-class PricingFeatureValueRow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const PricingFeatureValueRow = (props) => {
+  const { planType } = props;
 
-  getFormattedFeatureValueRow() {
-    const { planType } = this.props;
-
+  const getFormattedFeatureValueRow = () => {
     const currentPlan = pricingPlanActions.getPlanFeatures()[planType];
 
     const featureValueRows = currentPlan.map(({ featureSlug, value }) => {
@@ -55,7 +51,7 @@ class PricingFeatureValueRow extends React.Component {
         );
       } else {
         pricingRowContent = (
-          <div ref={this.getFeatureEl} className="pricing-row__feature-detail">
+          <div className="pricing-row__feature-detail">
             <PricingTooltip featureTitle={featureTitle} featureDescription={featureDescription}>{value}</PricingTooltip>
           </div>
         );
@@ -69,15 +65,13 @@ class PricingFeatureValueRow extends React.Component {
     });
 
     return featureValueRows;
-  }
+  };
 
-  render() {
-    return (
-      <div className="pricing-feature-col-wrapper">
-        {this.getFormattedFeatureValueRow()}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="pricing-feature-col-wrapper">
+      {getFormattedFeatureValueRow()}
+    </div>
+  );
+};
 
 export default PricingFeatureValueRow;

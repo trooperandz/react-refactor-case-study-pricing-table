@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Render the tooltip for each plan row feature detail
 class PricingTooltip extends React.Component {
   constructor(props) {
     super(props);
